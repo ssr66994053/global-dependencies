@@ -70,7 +70,7 @@
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid</artifactId>
-                <version>yiji-1.0.21</version>
+                <version>1.0.16-SNAPSHOT</version>
             </dependency>
             <!--bobo-->
             <dependency>
@@ -215,6 +215,7 @@
                 </exclusions>
             </dependency>
             
+            <!--  
             <dependency>
                 <groupId>com.yiji.framework</groupId>
                 <artifactId>watcher</artifactId>
@@ -246,6 +247,10 @@
                     </exclusion>
                 </exclusions>
             </dependency>
+            -->
+            
+            
+            <!--  
             <dependency>
                 <groupId>com.yiji.postman</groupId>
                 <artifactId>postman-api-sdk</artifactId>
@@ -261,17 +266,22 @@
                     </exclusion>
                 </exclusions>
             </dependency>
-            <!--易极付公共依赖-->
+            -->
+            
+            <!--国际公共依赖-->
             <dependency>
-                <groupId>com.yjf.common</groupId>
-                <artifactId>yjf-common-util</artifactId>
-                <version>2.2.20180129</version>
+                <groupId>com.global.common</groupId>
+                <artifactId>global-common-util</artifactId>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
+            
             <dependency>
                 <groupId>com.yjf.security.phprpc</groupId>
                 <artifactId>phprpc</artifactId>
                 <version>3.1</version>
             </dependency>
+            
+            
             <dependency>
                 <groupId>commons-beanutils</groupId>
                 <artifactId>commons-beanutils</artifactId>
@@ -1061,8 +1071,8 @@
         <plugins>
             <!--检查依赖中是否有相同的类，如果有，提示警告，可能会因为类加载顺序不一致导致不可预期的行为-->
             <plugin>
-                <groupId>com.yiji.maven</groupId>
-                <artifactId>yiji-maven-plugin</artifactId>
+                <groupId>com.global.maven</groupId>
+                <artifactId>global-maven-plugin</artifactId>
                 <version>1.0-SNAPSHOT</version>
                 <executions>
                     <execution>
@@ -1093,7 +1103,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
-                <version>1.3.1.yiji</version>
+                <version>1.3.1.global</version>
                 <executions>
                     <execution>
                         <id>enforce-versions</id>
@@ -1112,25 +1122,29 @@
                                     <searchTransitive>true</searchTransitive>
                                     <excludes>
                                         <exclude>org.slf4j:slf4j-log4j12</exclude>
-                                        <exclude>com.yjf.common:yjf-common-util</exclude>
+                                        <exclude>com.global.common:global-common-util</exclude>
                                         <exclued>org.apache.cxf:cxf-rt-transports-http-jetty</exclued>
                                         <exclued>com.yjf.security.phprpc:phprpc</exclued>
                                         <exclued>com.alibaba:dubbo</exclued>
                                         <exclued>com.alibaba:druid</exclued>
+                                        <!--  
                                         <exclued>com.yiji.postman:postman-api-sdk</exclued>
                                         <exclued>com.yiji:dtrace-core</exclued>
                                         <exclued>com.yiji:dtrace-api</exclued>
                                         <exclued>com.yiji:dtrace-dubbo</exclued>
                                         <exclued>com.yiji:dtrace-support</exclued>
-                                        <exclued>com.yiji.framework:yiji-yedis</exclued>
+                                        -->
+                                        <exclued>com.global.framework:global-yedis</exclued>
                                     </excludes>
                                     <includes>
-                                        <include>com.yjf.common:yjf-common-util:[2.2.20180129]</include>
+                                        <include>com.global.common:global-common-util:[2.2.20180319]</include>
                                         <include>com.yjf.security.phprpc:phprpc:[3.1]</include>
-                                        <include>com.alibaba:dubbo:[yiji-2.5.20]</include>
-                                        <include>com.alibaba:druid:[yiji-1.0.21]</include>
+                                        <include>com.alibaba:dubbo:[global-2.5.21]</include>
+                                        <include>com.alibaba:druid:[1.0.16-SNAPSHOT]</include>
+                                        <!--  
                                         <include>com.yiji.postman:postman-api-sdk:[1.5.0]</include>
-                                        <include>com.yiji.framework:yiji-yedis:[2.1.0]</include>
+                                        -->
+                                        <include>com.global.framework:global-yedis:[2.0.3-SNAPSHOT]</include>
                                     </includes>
                                 </bannedDependencies>
                                 <!--防止因为传递依赖版本不同导致依赖问题,这个要求太高了,不开启
@@ -1190,12 +1204,12 @@
                 <repository>
                     <id>nexus-releases</id>
                     <name>Internal Release Repository</name>
-                    <url>http://192.168.45.35:8081/nexus/content/repositories/releases/</url>
+                    <url>http://152.104.31.139:8081/nexus/content/repositories/releases/</url>
                 </repository>
                 <snapshotRepository>
                     <id>nexus-snapshot</id>
                     <name>Internal snapshot Repository</name>
-                    <url>http://192.168.45.35:8081/nexus/content/repositories/snapshots/</url>
+                    <url>http://152.104.31.139:8081/nexus/content/repositories/snapshots/</url>
                 </snapshotRepository>
             </distributionManagement>
         </profile>
@@ -1205,12 +1219,12 @@
                 <repository>
                     <id>nexus-releases</id>
                     <name>Internal Release Repository</name>
-                    <url>http://192.168.45.199:8081/nexus/content/repositories/releases/</url>
+                    <url>http://152.104.31.139:8081/nexus/content/repositories/releases/</url>
                 </repository>
                 <snapshotRepository>
                     <id>nexus-snapshot</id>
                     <name>Internal snapshot Repository</name>
-                    <url>http://192.168.45.199:8081/nexus/content/repositories/snapshots/</url>
+                    <url>http://152.104.31.139:8081/nexus/content/repositories/snapshots/</url>
                 </snapshotRepository>
             </distributionManagement>
         </profile>
